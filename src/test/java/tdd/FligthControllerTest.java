@@ -9,7 +9,8 @@ package tdd;
         - Eliminar vuelos
  */
 
-import com.sun.tools.javac.util.Assert;
+import com.tdd.Fligth;
+import com.tdd.FligthController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
