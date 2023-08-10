@@ -9,6 +9,7 @@ package tdd;
         - Eliminar vuelos
  */
 
+import com.tdd.FlightNotFoundException;
 import com.tdd.Fligth;
 import com.tdd.FligthController;
 import org.junit.jupiter.api.Assertions;
@@ -36,6 +37,13 @@ public class FligthControllerTest {
         fligthController.addFligth(fligh);
 
         Assertions.assertEquals(fligh, fligthController.findFligthByReference("1"));
+    }
+
+    @Test
+    public void givenEmptyFligthControllerWhenGetByReferencesThenTrhow(){
+        Assertions.assertThrows(FlightNotFoundException.class, () -> {
+                fligthController.findFligthByReference("1");
+        });
     }
 
 }

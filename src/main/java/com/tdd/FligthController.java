@@ -1,25 +1,27 @@
 package com.tdd;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FligthController {
 
-    private List<Fligth> fligths;
+    private Map<String, Fligth> fligths;
 
     public FligthController(){
-        fligths = new ArrayList<>();
+        fligths = new HashMap<String, Fligth>();
     }
 
     public void addFligth(Fligth fligh) {
-        fligths.add(fligh);
+        fligths.put(fligh.getReference(), fligh);
     }
 
     public Fligth findFligthByReference(String reference) {
-        for(Fligth fligth : fligths){
-            if (fligth.getReference().equals(reference))
-                return fligth;
-        }
-        throw new FlightNotFoundException();
+        Fligth fligth = fligths.get(reference);
+        if(fligth == null)
+            throw new FlightNotFoundException();
+        else
+            return  fligth;
     }
 }
