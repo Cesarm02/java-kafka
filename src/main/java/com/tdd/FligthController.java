@@ -14,6 +14,10 @@ public class FligthController {
     }
 
     public void addFligth(Fligth fligh) {
+        Fligth fligth = fligths.get(fligh.getReference());
+        if(fligth != null){
+            throw new DuplicateFLigthException();
+        }
         fligths.put(fligh.getReference(), fligh);
     }
 

@@ -9,6 +9,7 @@ package tdd;
         - Eliminar vuelos
  */
 
+import com.tdd.DuplicateFLigthException;
 import com.tdd.FlightNotFoundException;
 import com.tdd.Fligth;
 import com.tdd.FligthController;
@@ -43,6 +44,18 @@ public class FligthControllerTest {
     public void givenEmptyFligthControllerWhenGetByReferencesThenTrhow(){
         Assertions.assertThrows(FlightNotFoundException.class, () -> {
                 fligthController.findFligthByReference("1");
+        });
+    }
+
+    @Test
+    public void givenFligthControllerWithFligthWhenSameFligthAdded(){
+        LocalDate localDate = LocalDate.of(2021,1,1);
+        LocalTime localTime = LocalTime.of(10,30);
+        Fligth fligh = new Fligth("1", LocalDateTime.of(localDate, localTime), "Madrid", "Barcelona");
+        fligthController.addFligth(fligh);
+        Fligth fligh2 = new Fligth("1", LocalDateTime.of(localDate, localTime), "Madrid", "Barcelona");
+        Assertions.assertThrows(DuplicateFLigthException.class, () -> {
+            fligthController.addFligth(fligh2);
         });
     }
 
